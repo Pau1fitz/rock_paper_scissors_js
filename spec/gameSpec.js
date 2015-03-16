@@ -38,4 +38,11 @@ describe("Game", function() {
     expect(game.gameWinner(player, computer)).toEqual("Player Wins")
   })
 
+  it("knows when it's a draw", function(){
+    player.weapon("scissors");
+    spyOn(computer, "weapon").and.returnValue('scissors')
+    computer.weapon();
+    expect(game.gameWinner(player, computer)).toEqual("Draw")
+  })
+
 });
