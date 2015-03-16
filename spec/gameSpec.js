@@ -21,28 +21,36 @@ describe("Game", function() {
     player.weapon("rock");
     spyOn(computer, "weapon").and.returnValue("scissors")
     computer.weapon();
-    expect(game.gameWinner(player, computer)).toEqual("Player Wins")
+    game.addPlayer(player);
+    game.addPlayer(computer)
+    expect(game.winner()).toEqual("Player Wins")
   })
 
   it("knows that paper beats rock", function(){
     player.weapon("rock");
-    spyOn(computer, "weapon").and.returnValue('paper')
+    spyOn(computer, "weapon").and.returnValue("paper")
     computer.weapon();
-    expect(game.gameWinner(player, computer)).toEqual("Computer Wins")
+    game.addPlayer(player);
+    game.addPlayer(computer)
+    expect(game.winner()).toEqual("Computer Wins")
   })
 
   it("knows that scissors beats paper", function(){
-    player.weapon("scissors");
-    spyOn(computer, "weapon").and.returnValue('paper')
+    player.weapon("paper");
+    spyOn(computer, "weapon").and.returnValue("scissors")
     computer.weapon();
-    expect(game.gameWinner(player, computer)).toEqual("Player Wins")
+    game.addPlayer(player);
+    game.addPlayer(computer)
+    expect(game.winner()).toEqual("Computer Wins")
   })
 
-  it("knows when it's a draw", function(){
-    player.weapon("scissors");
-    spyOn(computer, "weapon").and.returnValue('scissors')
+   it("knows when it is a draw", function(){
+    player.weapon("paper");
+    spyOn(computer, "weapon").and.returnValue("paper")
     computer.weapon();
-    expect(game.gameWinner(player, computer)).toEqual("Draw")
+    game.addPlayer(player);
+    game.addPlayer(computer)
+    expect(game.winner()).toEqual("Draw")
   })
 
 });
